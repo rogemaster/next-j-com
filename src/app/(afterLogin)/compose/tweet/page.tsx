@@ -1,7 +1,7 @@
-export default function ComposePage() {
+import Home from "@/app/(afterLogin)/home/page";
+
+export default function Page() {
   return (
-    <main>
-      ComposePage
-    </main>
+    <Home />
   );
 }
