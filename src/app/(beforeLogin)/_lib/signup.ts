@@ -2,7 +2,9 @@
 
 import {redirect} from "next/navigation";
 
-export default async (prevState: {message: string | null}, formData: FormData) => {
+type IPrev = {message: string | null};
+
+export default async (prevState: IPrev, formData: FormData) => {
   // use server 선언한 함수 로직은 클라이언트에 노출 되지 않는다.
 
   // formData 검증
