@@ -1,6 +1,7 @@
 "use server"
 
 import {redirect} from "next/navigation";
+import {signIn} from "@/auth";
 
 type IPrev = {message: string | null};
 
@@ -17,14 +18,14 @@ export default async (prevState: IPrev, formData: FormData) => {
   if (!formData.get('password') || !(formData.get('password') as string)?.trim()) {
     return {message: 'no_password'};
   }
-  if (!formData.get('image') || !(formData.get('image') as string)?.trim()) {
+  if (!formData.get('image') || !(formData.get('image') as string)) {
     return {message: 'no_image'};
   }
 
   let shouldRedirect = false;
 
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/signup`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/signup`, {
       method: "POST",
       body: formData,
       credentials: 'include'
@@ -34,8 +35,11 @@ export default async (prevState: IPrev, formData: FormData) => {
       return {message: 'user_exists'};
     }
     shouldRedirect = true;
-    console.log(response.status);
-    console.log(await response.json());
+    await signIn('credentials', {
+      username: formData.get('id'),
+      password: formData.get('password'),
+      redirect: false
+    })
   } catch (error) {
     console.log(error);
     return {message: null};

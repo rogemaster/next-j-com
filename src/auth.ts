@@ -8,8 +8,6 @@ export const { auth, handlers: {GET, POST}, signIn, signOut } = NextAuth({
   },
   providers: [
     Credentials({
-      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
-      // e.g. domain, username, password, 2FA token, etc.
       authorize: async (credentials) => {
         const authResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/login`, {
           method: "POST",
