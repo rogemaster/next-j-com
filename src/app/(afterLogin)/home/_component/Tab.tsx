@@ -1,10 +1,11 @@
-"use client"
+'use client';
 
 import style from './tab.module.css';
-import {useState} from "react";
+import { useContext, useState } from 'react';
+import { TabContext } from '@/app/(afterLogin)/home/_component/TabProvider';
 
 export default function Tab() {
-  const [tab, setTab] = useState<string>('rec');
+  const { tab, setTab } = useContext(TabContext);
 
   const onClickRec = () => {
     setTab('rec');
@@ -23,8 +24,7 @@ export default function Tab() {
           <div className={style.tabIndicator} hidden={tab === 'fol'}></div>
         </div>
         <div onClick={onClickFol}>
-          팔로우 중
-          <div className={style.tabIndicator} hidden={tab === 'rec'}></div>
+          팔로우 중<div className={style.tabIndicator} hidden={tab === 'rec'}></div>
         </div>
       </div>
     </div>

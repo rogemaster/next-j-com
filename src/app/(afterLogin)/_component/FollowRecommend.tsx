@@ -1,15 +1,14 @@
-"use client"
+'use client';
 
 import style from './followRecommend.module.css';
+import { IUser } from '@/model/IUser';
 
-export default function FollowRecommend() {
-  const user = {
-    id: 'elonmusk',
-    nickname: 'Elon Musk',
-    image: '/yRsRRjGO.jpg'
-  };
+type Props = {
+  user: IUser;
+};
 
-  const onFollow = () => {}
+export default function FollowRecommend({ user }: Props) {
+  const onFollow = () => {};
 
   return (
     <div className={style.container}>
