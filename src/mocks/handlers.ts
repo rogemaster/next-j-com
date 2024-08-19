@@ -56,7 +56,12 @@ export const handlers = [
   }),
   http.get('/api/users/:userId', ({ request, params }) => {
     const { userId } = params;
-    return HttpResponse.json(User[1]);
+    const find = User.find((value) => value === params);
+    if (find) {
+      return HttpResponse.json(User[1]);
+    } else {
+      return HttpResponse.json({ message: 'no_such_user' }, { status: 404 });
+    }
   }),
   http.get('/api/users/:userId/posts/:postId', ({ request, params }) => {
     const { userId, postId } = params;
