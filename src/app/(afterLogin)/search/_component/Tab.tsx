@@ -6,16 +6,26 @@ import {useRouter, useSearchParams} from "next/navigation";
 
 export default function Tab() {
   const [current, setCurrent] = useState<string>('new')
-  const router = useRouter();
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const onClickHot = () => {
     setCurrent('hot');
-    router.replace(`/search?q=${searchParams.get('q')}`);
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.delete('f');
+    router.replace(`/search?${newSearchParams.toString()}`);
+
+    let url = `/search?q=${searchParams.get('q')}`;
+    if (searchParams.has('pf')) {
+      url += `&pf=${searchParams.get('pf')}`;
+    }
+    router.replace(url);
   };
   const onClickNew = () => {
     setCurrent('new');
-    router.replace(`/search?${searchParams.toString()}&f=live`);
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set('f', 'live');
+    router.replace(`/search?${newSearchParams.toString()}`);
   };
 
   return (

@@ -217,19 +217,19 @@ export function FakerUserPosts(userId: string | readonly string[]) {
   ];
 }
 
-export function FakerUserPostsComments(userId: string | readonly string[], postId: string | readonly string[]) {
+export function FakerUserPostsComments(postId: string | readonly string[]) {
   return [
     {
       postId: 1,
       User: User[0],
-      content: `${1} ${userId}의 게시글 ${postId}의 답글`,
+      content: `${1} 게시글 ${postId}의 답글`,
       Images: [{ imageId: 1, link: faker.image.urlLoremFlickr() }],
       createdAt: generateDate(),
     },
     {
       postId: 2,
       User: User[0],
-      content: `${2} ${userId}의 게시글 ${postId}의 답글`,
+      content: `${2} 게시글 ${postId}의 답글`,
       Images: [
         { imageId: 1, link: faker.image.urlLoremFlickr() },
         { imageId: 2, link: faker.image.urlLoremFlickr() },
@@ -239,14 +239,14 @@ export function FakerUserPostsComments(userId: string | readonly string[], postI
     {
       postId: 3,
       User: User[0],
-      content: `${3} ${userId}의 게시글 ${postId}의 답글`,
+      content: `${3} 게시글 ${postId}의 답글`,
       Images: [],
       createdAt: generateDate(),
     },
     {
       postId: 4,
       User: User[0],
-      content: `${4} ${userId}의 게시글 ${postId}의 답글`,
+      content: `${4} 게시글 ${postId}의 답글`,
       Images: [
         { imageId: 1, link: faker.image.urlLoremFlickr() },
         { imageId: 2, link: faker.image.urlLoremFlickr() },
@@ -258,7 +258,7 @@ export function FakerUserPostsComments(userId: string | readonly string[], postI
     {
       postId: 5,
       User: User[0],
-      content: `${5} ${userId}의 게시글 ${postId}의 답글`,
+      content: `${5} 게시글 ${postId}의 답글`,
       Images: [
         { imageId: 1, link: faker.image.urlLoremFlickr() },
         { imageId: 2, link: faker.image.urlLoremFlickr() },
