@@ -6,13 +6,16 @@ import PostRecommends from '@/app/(afterLogin)/home/_component/PostRecommends';
 import TabDeciderSuspense from '@/app/(afterLogin)/home/_component/TabDeciderSuspense';
 import { Suspense } from 'react';
 import Loading from '@/app/(afterLogin)/home/loading';
+import { auth } from '@/auth';
 
 export default async function HomePage() {
+  const session = await auth();
+
   return (
     <main className={style.main}>
       <TabProvider>
         <Tab />
-        <PostForm />
+        <PostForm me={session} />
         <Suspense fallback={<Loading />}>
           <TabDeciderSuspense />
         </Suspense>

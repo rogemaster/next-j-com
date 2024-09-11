@@ -1,8 +1,5 @@
 import style from './profile.module.css';
-import BackButton from '@/app/(afterLogin)/_component/BackButton';
-import Post from '@/app/(afterLogin)/_component/Post';
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
-import { getPostRecommends } from '@/app/(afterLogin)/home/_lib/getPostRecommends';
 import UserPosts from '@/app/(afterLogin)/[username]/_component/UserPosts';
 import { getUserPosts } from '@/app/(afterLogin)/[username]/_lib/getUserPosts';
 import {getUser} from "@/app/(afterLogin)/[username]/_lib/getUser";

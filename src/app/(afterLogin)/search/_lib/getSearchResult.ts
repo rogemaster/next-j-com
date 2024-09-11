@@ -6,14 +6,16 @@ export const getSearchResult: QueryFunction<
   [_1: string, _2: string, searchParams: { q: string; f?: string; pf?: string }]
 > = async ({ queryKey }) => {
   const [_1, _2, searchParams] = queryKey;
+  const urlSearchParams = new URLSearchParams(searchParams);
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/search/${searchParams.q}?${searchParams.toString()}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/posts?${urlSearchParams.toString()}`,
     {
       // react-query 에서는 객체가 파라미터로 들어갈수 있으나 next tag 에서는 객체가 들어 갈수 없다.
       // next 캐싱은 react-query 와 사용법이 좀 다르다.
       next: {
         tags: ['posts', 'search', searchParams.q],
       },
+      credentials: 'include',
       cache: 'no-store',
     },
   );
